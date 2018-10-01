@@ -21,4 +21,4 @@ def post_detail(request, pk):
     }
     # templates/blog/post_detail.html을 Template으로 사용해서
     #  post가 가진 title, text, author, created_date, published_date를 적절히 출력
-    return HttpResponse('Post Detail')
+    return render(request, 'blog/post_detail.html', context)
