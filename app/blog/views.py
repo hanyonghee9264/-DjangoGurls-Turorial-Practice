@@ -2,6 +2,7 @@ import re
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from .models import Post
 
@@ -43,7 +44,7 @@ def post_create(request):
     if request.method == 'POST':
         # POST요청이 왔을 경우
         #  새 글을 작성하고 원하는 페이지로 돌아가도록 함
-        # 데이터는 request.POST안에 있음음
+        # 데이터는 request.POST안에 있음
         # HttpResponse를 돌려줌
         #  제목: <제목데이터><br>내용: <내용데이터>
         # 위 문자열을 가지고 response돌려주기
@@ -62,7 +63,7 @@ def post_create(request):
             text=text,
         )
         # 글 목록 페이지로 Redirect응답을 보냄
-        next_path = '/blog-posts/'
+        next_path = reverse('post-list')
         return HttpResponseRedirect(next_path)
     else:
         return render(request, 'blog/post_create.html')
